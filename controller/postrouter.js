@@ -11,4 +11,12 @@ route.post("/add",async(req,res)=>{
     })
 })
 
+route.get("/viewall",async(req,res)=>{
+    let result=await postModel.find()
+    .populate("Userid","Name age mobileno address pincode -_id ")
+    .exec()
+    res.json(result)  
+
+})
+
 module.exports=route
